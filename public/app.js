@@ -40,9 +40,12 @@ var populateList = function(characters) {
     var imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
     var gender = "Unknown"
     var deck = "This character's description hasn't been filled in!"
+    var firstGame = "Unknown"
 
     if (character.image !== null) {var imageUrl = character.image.small_url;}
     if (character.deck !== null) {var deck = character.deck}
+    if (character.first_appeared_in_game !== null) {var firstGame = character.first_appeared_in_game.name}
+
     if (character.gender !== null) {
       if (character.gender === 1) {var gender = "Male"}
       else if (character.gender === 2) {var gender = "Female"}
@@ -50,13 +53,13 @@ var populateList = function(characters) {
     }
 
     li.innerHTML = 
+    '<p>"' + character.date_last_updated + '"</p>' +
     '<p><a href="' + character.site_detail_url + '">' + '<img src="' + imageUrl + '" height="80" width = "80">' + '</p>' +
     '<p><b>' + character.name + '</b></a></p>' + 
     '<p><i>' + deck + '</i></p>' +
-    '<p>Gender: ' + gender + '</p>';
-    // img = beer.image_url
+    '<p><b>Gender:</b> ' + gender + '</p>' +
+    '<p><b>First appeared in:</b> ' + firstGame + '</p>';
     ul.appendChild(li);
-    // ul.appendChild(img);
   })
 }
 
